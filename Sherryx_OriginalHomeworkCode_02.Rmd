@@ -63,7 +63,7 @@ three_calls
 ```{r}
 # this is the x values for the range 0 ≤ x ≤ 30
 x_range <- 0:30
-poisson_mass_function <- dpois(x_values, exact)
+poisson_mass_function <- dpois(x_range, exact)
 
 summary(poisson_mass_function)
 ```
@@ -71,7 +71,7 @@ summary(poisson_mass_function)
 ```{r}
 # Plot PMF
 #Import the data created above
-ggplot(data = data.frame(x_range, poisson_mass_function), aes(x = x_values, y = poisson_mass_function)) +
+ggplot(data = data.frame(x_range, poisson_mass_function), aes(x = x_range, y = poisson_mass_function)) +
   
   #i need to fill the data otherwise nothing shows up on my figure
     geom_bar(stat = "identity", fill = "purple", alpha = 0.6) +
@@ -105,8 +105,9 @@ summary(stimulated_data)
 ## 6. Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
 
 ```{r}
+library(ggplot2)
 # Plot histogram of simulated data
-ggplot(data = data.frame(simulated_data), aes(x = simulated_data)) +
+ggplot(data = data.frame(stimulated_data), aes(x = stimulated_data)) +
     geom_histogram(binwidth = 1, fill = "blue", alpha = 0.6, color = "black") +
    
   #labeling the graph
@@ -120,6 +121,10 @@ ggplot(data = data.frame(simulated_data), aes(x = simulated_data)) +
 
 -   The shape of the probability mass function I plotted above is 100% symmetrical
 
--   The simulated data follows the PMF closely, with some small variations due to randomness of the 104 variables
+-   The simulated data still follows the overall trend of the PMF, but its not the same
 
-    -   The histogram is therefore not symmetrical, bump on the left side
+    -   with some variations due to randomness of the 104 variables
+
+    -   The histogram is therefore not symmetrical, bump on the left and right side
+
+    -   this is a more accurate representation of what real life scientific data looks like
