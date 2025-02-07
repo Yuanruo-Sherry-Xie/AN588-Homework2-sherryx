@@ -1,0 +1,96 @@
+---
+title: "Sherryx_OriginalHomeworkCode_02"
+author: "Sherry Xie"
+date: "2025-02-07"
+output: html_document
+---
+
+## Set up
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#loading ggplot for the figures
+library(ggplot2)
+```
+
+## 1. Probability of Hearing More than 8 Calls
+
+```{r}
+#originally resercher hears 15 calls
+exact <- 15
+
+#set up probability that she will hear 8 or more calls over the original 15 calls
+#1- because we want 8 or more calls
+eight_or_more <- 1 - ppois(8, exact)
+
+#show result
+eight_or_more
+```
+
+## 2. Probability of Hearing No Calls
+
+```{r}
+#originally resercher hears 15 calls
+exact <- 15
+
+#set up probability that she will hear no calls over the original 15 calls
+#I did not use 1 - (100 percent chance of hearing call), because she heard no calls and there are no greater than...
+no_call <- ppois(0, exact)
+
+#show result
+no_call
+```
+
+## 3. Probability of Hearing Exactly 3 Calls
+
+```{r}
+#originally resercher hears 15 calls
+exact <- 15
+
+#set up probability that she will hear 3 calls over the original 15 calls
+#No 1- because we want EXCATLY 3 calls
+three_calls <- ppois(3, exact)
+
+#show result
+three_calls
+```
+
+## 4. Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
+
+```{r}
+# Generate values
+x_values <- 0:30
+poisson_pmf <- dpois(x_values, exact)
+
+# Plot PMF
+ggplot(data = data.frame(x_values, poisson_pmf), aes(x = x_values, y = poisson_pmf)) +
+    geom_bar(stat = "identity", fill = "blue", alpha = 0.6) +
+    labs(title = "Poisson Probability Mass Function (λ=15)",
+         x = "Number of Calls", y = "Probability") +
+    theme_minimal()
+
+```
+
+## 5. Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+```{r}
+set.seed(123)  # Ensure reproducibility
+simulated_data <- rpois(10000, lambda)
+
+# Plot histogram of simulated data
+ggplot(data = data.frame(simulated_data), aes(x = simulated_data)) +
+    geom_histogram(binwidth = 1, fill = "red", alpha = 0.6, color = "black") +
+    labs(title = "Histogram of Simulated Poisson Data (λ=15)",
+         x = "Number of Calls", y = "Frequency") +
+    xlim(0, 30) +
+    theme_minimal()
+```
+
+## 6. Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+-   The **theoretical Poisson distribution** predicts the probabilities well.
+
+-   The **simulated data** follows the PMF closely, with some small variations due to randomness.
