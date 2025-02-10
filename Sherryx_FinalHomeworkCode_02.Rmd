@@ -25,6 +25,10 @@ library(ggplot2)
 library(prettydoc)
 ```
 
+## Favorite Image of the titi monkey
+
+![](DZG_Titi_Monkey_5-SIGN-1.jpg)
+
 ## 1. Probability of Hearing More than 8 Calls
 
 ```{r}
