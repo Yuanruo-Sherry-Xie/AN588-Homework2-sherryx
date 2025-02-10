@@ -38,7 +38,7 @@ exact <- 15
 
 #set up probability that she will hear no calls over the original 15 calls
 #I did not use 1 - (100 percent chance of hearing call), because she heard no calls and there are no greater than...
-no_call <- dpois(0, exact)
+no_call <- ppois(0, exact)
 
 #show result
 no_call
@@ -52,7 +52,7 @@ exact <- 15
 
 #set up probability that she will hear 3 calls over the original 15 calls
 #No 1- because we want EXCATLY 3 calls
-three_calls <- dpois(3, exact)
+three_calls <- ppois(3, exact)
 
 #show result
 three_calls
@@ -65,7 +65,6 @@ three_calls
 x_range <- 0:30
 poisson_mass_function <- dpois(x_range, exact)
 
-#provide a summary of the data: mean, median...
 summary(poisson_mass_function)
 ```
 
