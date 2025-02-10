@@ -1,0 +1,135 @@
+---
+title: "Sherryx_FinalHomeworkCode_02"
+author: "Sherry Xie"
+date: "2025-02-10"
+output: html_document:
+        theme: cayman
+       toc: true
+---
+
+## Set up
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#loading ggplot for the figures
+library(ggplot2)
+```
+
+## 1. Probability of Hearing More than 8 Calls
+
+```{r}
+#originally resercher hears 15 calls
+exact <- 15
+
+#set up probability that she will hear 8 or more calls over the original 15 calls
+#1- because we want 8 or more calls
+eight_or_more <- 1 - ppois(8, exact)
+
+#show result
+eight_or_more
+```
+
+## 2. Probability of Hearing No Calls
+
+```{r}
+#originally resercher hears 15 calls
+exact <- 15
+
+#set up probability that she will hear no calls over the original 15 calls
+#I did not use 1 - (100 percent chance of hearing call), because she heard no calls and there are no greater than...
+#Listened from Amita and used dpois instead of ppois
+no_call <- dpois(0, exact)
+
+#show result
+no_call
+```
+
+## 3. Probability of Hearing Exactly 3 Calls
+
+```{r}
+#originally resercher hears 15 calls
+exact <- 15
+
+#set up probability that she will hear 3 calls over the original 15 calls
+#No 1- because we want EXCATLY 3 calls
+#Listened from Amita and used dpois instead of ppois
+three_calls <- dpois(3, exact)
+
+#show result
+three_calls
+```
+
+## 4. Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
+
+```{r}
+# this is the x values for the range 0 ≤ x ≤ 30
+x_range <- 0:30
+poisson_mass_function <- dpois(x_range, exact)
+
+#provide a summary of the data: mean, median...
+summary(poisson_mass_function)
+```
+
+```{r}
+# Plot PMF
+#Import the data created above
+ggplot(data = data.frame(x_range, poisson_mass_function), aes(x = x_range, y = poisson_mass_function)) +
+  
+  #i need to fill the data otherwise nothing shows up on my figure
+    geom_bar(stat = "identity", fill = "purple", alpha = 0.6) +
+  
+  #figure title and organization
+    labs(title = "Poisson Probability Mass Function",
+         x = "Number of Calls", y = "Probability") +
+  
+  #prettifying by using a theme
+    theme_minimal()
+```
+
+## 5. Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+```{r}
+#originally resercher hears 15 calls
+exact <- 15
+
+# Simulate 104 Poisson-distributed monitoring sessions
+#still over 15 as the original distribution: Average number of events per interval
+# I used rpois: random density for poisson distribution instead of ppois which is probability distribution
+stimulated_data <- rpois(104, exact)
+
+#show result
+stimulated_data
+
+#provide a summary of the data: mean, median...
+summary(stimulated_data)
+```
+
+## 6. Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+```{r}
+library(ggplot2)
+# Plot histogram of simulated data
+ggplot(data = data.frame(stimulated_data), aes(x = stimulated_data)) +
+    geom_histogram(binwidth = 1, fill = "blue", alpha = 0.6, color = "black") +
+   
+  #labeling the graph
+   labs(title = "Histogram of 104 Simulated Poisson Data",
+         x = "Number of Calls", y = "Frequency") +
+ 
+  #setting the horizontal limit from 0 to 30 
+     xlim(0, 30) +
+    theme_minimal()
+```
+
+-   The shape of the probability mass function I plotted above is 100% symmetrical
+
+-   The simulated data still follows the overall trend of the PMF, but its not the same
+
+    -   with some variations due to randomness of the 104 variables
+
+    -   The histogram is therefore not symmetrical, bump on the left and right side
+
+    -   this is a more accurate representation of what real life scientific data looks like
