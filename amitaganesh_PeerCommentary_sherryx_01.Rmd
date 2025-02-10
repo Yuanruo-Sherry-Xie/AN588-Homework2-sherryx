@@ -1,5 +1,5 @@
 ---
-title: "Sherryx_OriginalHomeworkCode_02"
+title: "Peer Commentary - Amita Ganesh"
 author: "Sherry Xie"
 date: "2025-02-07"
 output: html_document
@@ -10,7 +10,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+# I think you did a really good job of annotating your code! It's easy to follow and I feel like I can learn from that, too. 
 ```{r}
 #loading ggplot for the figures
 library(ggplot2)
@@ -43,7 +43,7 @@ no_call <- ppois(0, exact)
 #show result
 no_call
 ```
-
+# Interesting...I used dpois because she is looking for the probablity of hearing exactly 0 calls, whereas in the previous question she was looking for 8 or more. I wonder how our outputs compare. 
 ## 3. Probability of Hearing Exactly 3 Calls
 
 ```{r}
@@ -57,7 +57,7 @@ three_calls <- ppois(3, exact)
 #show result
 three_calls
 ```
-
+# Here I also used dpois. Thanks again for being so detailed in your annotations! 
 ## 4. Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
 
 ```{r}
@@ -67,7 +67,7 @@ poisson_mass_function <- dpois(x_range, exact)
 
 summary(poisson_mass_function)
 ```
-
+# Why do you use the summary function? What does that do?
 ```{r}
 # Plot PMF
 #Import the data created above
@@ -83,7 +83,7 @@ ggplot(data = data.frame(x_range, poisson_mass_function), aes(x = x_range, y = p
   #prettifying by using a theme
     theme_minimal()
 ```
-
+# Nice color choice! 
 ## 5. Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
 
 ```{r}
@@ -128,3 +128,6 @@ ggplot(data = data.frame(stimulated_data), aes(x = stimulated_data)) +
     -   The histogram is therefore not symmetrical, bump on the left and right side
 
     -   this is a more accurate representation of what real life scientific data looks like
+    
+# I think your analysis looks good! I liked that you included that is likley what actual scientific data will look like; that's a good conclusion to make. 
+# I think you might be missing writing down 5 challegenes you faced during this assingment. Other than that, this looks great! 
