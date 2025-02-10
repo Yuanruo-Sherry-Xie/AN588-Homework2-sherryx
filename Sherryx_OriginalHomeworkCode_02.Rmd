@@ -38,13 +38,11 @@ exact <- 15
 
 #set up probability that she will hear no calls over the original 15 calls
 #I did not use 1 - (100 percent chance of hearing call), because she heard no calls and there are no greater than...
-no_call <- ppois(0, exact)
+no_call <- dpois(0, exact)
 
 #show result
 no_call
 ```
-
-# Interesting...I used dpois because she is looking for the probablity of hearing exactly 0 calls, whereas in the previous question she was looking for 8 or more. I wonder how our outputs compare.
 
 ## 3. Probability of Hearing Exactly 3 Calls
 
@@ -54,13 +52,11 @@ exact <- 15
 
 #set up probability that she will hear 3 calls over the original 15 calls
 #No 1- because we want EXCATLY 3 calls
-three_calls <- ppois(3, exact)
+three_calls <- dpois(3, exact)
 
 #show result
 three_calls
 ```
-
-# Here I also used dpois. Thanks again for being so detailed in your annotations!
 
 ## 4. Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30
 
@@ -69,10 +65,9 @@ three_calls
 x_range <- 0:30
 poisson_mass_function <- dpois(x_range, exact)
 
+#provide a summary of the data: mean, median...
 summary(poisson_mass_function)
 ```
-
-# Why do you use the summary function? What does that do?
 
 ```{r}
 # Plot PMF
@@ -89,8 +84,6 @@ ggplot(data = data.frame(x_range, poisson_mass_function), aes(x = x_range, y = p
   #prettifying by using a theme
     theme_minimal()
 ```
-
-# Nice color choice!
 
 ## 5. Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
 
