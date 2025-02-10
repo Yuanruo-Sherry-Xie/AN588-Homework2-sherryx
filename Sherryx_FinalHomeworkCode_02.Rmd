@@ -2,9 +2,11 @@
 title: "Sherryx_FinalHomeworkCode_02"
 author: "Sherry Xie"
 date: "2025-02-10"
-output: html_document:
-        theme: cayman
-       toc: true
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+    toc: true
 ---
 
 ## Set up
@@ -16,6 +18,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #loading ggplot for the figures
 library(ggplot2)
+```
+
+```{r}
+#loading prettydoc for the theme
+library(prettydoc)
 ```
 
 ## 1. Probability of Hearing More than 8 Calls
